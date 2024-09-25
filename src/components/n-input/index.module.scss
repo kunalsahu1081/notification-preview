@@ -1,0 +1,66 @@
+.input {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+
+    .inputLabel {
+        margin-bottom: 4px;
+        color: var(--InputLabelColor);
+        font-size: var(--InputLabelFontSize);
+    }
+
+    input {
+        width: inherit;
+        transition: 0.3s;
+        flex-grow: 1;
+        font-family: var(--InputFontFamily), sans-serif;
+        color: var(--InputActiveColor);
+        font-size: var(--InputFontSize);
+        font-weight: var(--InputFontWeight);
+        height: var(--InputHeight);
+        border-radius: var(--InputBorderRadius);
+        padding: var(--InputPadding);
+        border: var(--InputBorder);
+    }
+
+    input:focus {
+        outline: none;
+        border: var(--InputFocusBorder);
+        transition: 0.3s;
+    }
+}
+
+.inputBoxContainer {
+    width: inherit;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+input::placeholder {
+    color: var(--InputPlaceHolderColor);
+    font-weight: var(--InputPlaceHolderFontWeight);
+}
+
+input:disabled {
+    background: var(--InputDisabledBgColor);
+    color: var(--InputDisabledColor);
+    border: 1px solid var(--InputDisabledBgColor);
+}
+
+.inputPrefix {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left: 16px;
+}
+
+.inputSuffix {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    right: 16px;
+}

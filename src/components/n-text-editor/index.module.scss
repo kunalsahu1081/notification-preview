@@ -1,0 +1,106 @@
+
+.editOptions {
+  height: 28px;
+  border-radius: 16px;
+  margin-top: 8px;
+  padding: 6px 12px;
+  width: min-content;
+  background: #F5F5F5;
+
+  display: flex;
+
+  gap: 6px;
+
+  .optionSection {
+    display: flex;
+    gap: 8px;
+
+    div {
+      display: flex;
+      cursor: pointer;
+    }
+  }
+
+  .separator {
+    height: 20px;
+    padding: 4px 0;
+    width: 1px;
+    background: #adadad;
+  }
+}
+
+.inputBox {
+  background: #FFFFFF;
+  border: 1px solid #DADADA;
+  box-shadow: inset 3px 3px 4px 1px rgba(0, 0, 0, 0.04);
+  border-radius: 8px;
+  padding: 12px;
+  box-sizing: border-box;
+  max-height: 45px;
+
+  overflow: auto;
+
+  p {
+    margin: 0;
+
+  }
+}
+
+.focusedInputBox {
+  border: 1px solid #E91E63 !important;
+}
+
+.optionsContainer {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+
+}
+
+
+.max_length {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  font-size: 14px;
+  line-height: 24px;
+}
+
+.placeholder {
+  position: absolute;
+  left: 12px;
+  font-weight: 500;
+  line-height: 24px;
+  color: #C6C6C6;
+  font-size: 14px;
+  top: 12px;
+}
+
+
+.linInputHeader {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 20px;
+  margin-bottom: 4px;
+
+  //span {
+  //    color: #FD1D1D;
+  //}
+
+  .title {
+    display: flex;
+    text-transform: uppercase;
+
+
+    .titleText {
+      text-transform: uppercase;
+    }
+
+  }
+
+  .required {
+    color: #757575;
+  }
+}
