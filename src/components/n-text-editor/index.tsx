@@ -93,7 +93,7 @@ const NTextEditor = ({
                 </header>
             ) : null}
 
-            <div style={{position: "relative"}}>
+            <div style={{position: "relative", width: '450px'}}>
 
                 <div className={styles.placeholder}>{placeholder}</div>
 
@@ -103,22 +103,22 @@ const NTextEditor = ({
                         set_is_input_focused(false);
                     }}
                     onFocus={() => set_is_input_focused(true)}
-                    style={{maxHeight: height ?? "none"}}
+                    style={{maxHeight: '128px', height: '128px'}}
                     className={`${styles.inputBox} ${is_input_focused ? styles.focusedInputBox : ""}`}
                     editor={editor}
                 >
                     {" "}
                 </EditorContent>
-            </div>
 
-            <div className={styles.optionsContainer}>
-                <EditOptions editor={editor}/>
-                <InsertAttributesOptions editor={editor}
-                                         openEmojiPicker={openEmojiPicker}
-                                         setOpenEmojiPicker={setOpenEmojiPicker}
-                                         openAttributeList={openAttributeList}
-                                         setOpenAttributeList={setOpenAttributeList}
-                />
+
+                <div className={styles.optionsContainer}>
+                    <EditOptions editor={editor}/>
+                    <InsertAttributesOptions editor={editor}
+                                             openEmojiPicker={openEmojiPicker}
+                                             setOpenEmojiPicker={setOpenEmojiPicker}
+
+                    />
+                </div>
             </div>
         </>
     );
@@ -136,13 +136,19 @@ enum EeditOptions {
 }
 
 const EditIcons = {
-    [EeditOptions.bold]: <img alt={"bold"} src="/src/assets/text-editor/bold-icon.svg"/>,
-    [EeditOptions.italics]: <img alt={"bold"} src="/src/assets/text-editor/italics-icon.svg"/>,
-    [EeditOptions.underline]: <img alt={"bold"} src="/src/assets/text-editor/underline-icon.svg"/>,
-    [EeditOptions.strike_through]: <img alt={"bold"} src="/src/assets/text-editor/strike-through-icon.svg"/>,
-    [EeditOptions.text_color]: <img alt={"bold"} src="/src/assets/text-editor/text-color-icon.svg"/>,
-    [EeditOptions.user_attributes]: <img alt={"bold"} src="/src/assets/text-editor/user-icon.svg"/>,
-    [EeditOptions.emoticons]: <img alt={"bold"} src="/src/assets/text-editor/emoji-icon.svg"/>,
+    [EeditOptions.bold]: <img height={'14px'} width={'14px'} alt={"bold"} src="/src/assets/text-editor/bold-icon.svg"/>,
+    [EeditOptions.italics]: <img height={'14px'} width={'14px'} alt={"bold"}
+                                 src="/src/assets/text-editor/italics-icon.svg"/>,
+    [EeditOptions.underline]: <img height={'14px'} width={'14px'} alt={"bold"}
+                                   src="/src/assets/text-editor/underline-icon.svg"/>,
+    [EeditOptions.strike_through]: <img height={'14px'} width={'14px'} alt={"bold"}
+                                        src="/src/assets/text-editor/strike-through-icon.svg"/>,
+    [EeditOptions.text_color]: <img height={'14px'} width={'14px'} alt={"bold"}
+                                    src="/src/assets/text-editor/text-color-icon.svg"/>,
+    [EeditOptions.user_attributes]: <img height={'14px'} width={'14px'} alt={"bold"}
+                                         src="/src/assets/text-editor/user-icon.svg"/>,
+    [EeditOptions.emoticons]: <img height={'14px'} width={'14px'} alt={"bold"}
+                                   src="/src/assets/text-editor/emoji-icon.svg"/>,
 };
 
 const EditOptions = ({editor}: any) => {
@@ -179,18 +185,20 @@ const EditOptions = ({editor}: any) => {
                         onClick={() => {
                             toggleBold();
                         }}
+                        className={editor?.isActive('bold') ? styles.selected : ''}
                     >
                         {EditIcons[EeditOptions.bold]}
                     </div>
-                    <div onClick={() => toggleItalic()}>{EditIcons[EeditOptions.italics]}</div>
-                    <div onClick={() => toggleUnderline()}>{EditIcons[EeditOptions.underline]}</div>
-                    <div onClick={() => toggleStrikeThrough()}>{EditIcons[EeditOptions.strike_through]}</div>
+                    <div className={editor?.isActive('italic') ? styles.selected : ''} onClick={() => toggleItalic()}>{EditIcons[EeditOptions.italics]}</div>
+                    <div className={editor?.isActive('underline') ? styles.selected : ''} onClick={() => toggleUnderline()}>{EditIcons[EeditOptions.underline]}</div>
+                    <div className={editor?.isActive('strike') ? styles.selected : ''} onClick={() => toggleStrikeThrough()}>{EditIcons[EeditOptions.strike_through]}</div>
                 </div>
 
                 <div className={styles.separator}></div>
 
                 <div className={styles.optionSection}>
-                    <div onClick={() => setOpenColorPicker((prev) => !prev)}>
+                    <div style={{display: "flex", alignItems: 'center'}}
+                         onClick={() => setOpenColorPicker((prev) => !prev)}>
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g clipPath="url(#clip0_23373_198)">
                                 <path
@@ -211,12 +219,6 @@ const EditOptions = ({editor}: any) => {
                                          onChangeComplete={(color) => toggleColor(color.toHexString())}
                                          defaultValue="#1677ff" size="small"/>
                         </div>
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M7.49738 9.91379L4.08651 6.50292C4.04526 6.46177 4.01714 6.40931 4.00572 6.35218C3.99429 6.29505 4.00007 6.23581 4.02233 6.18197C4.04459 6.12812 4.08232 6.08209 4.13074 6.0497C4.17917 6.01731 4.23612 6.00001 4.29438 6H11.1173C11.1756 6.00001 11.2325 6.01731 11.281 6.0497C11.3294 6.08209 11.3671 6.12812 11.3894 6.18197C11.4116 6.23581 11.4174 6.29505 11.406 6.35218C11.3946 6.40931 11.3664 6.46177 11.3252 6.50292L7.91373 9.91379C7.85851 9.96899 7.78363 10 7.70555 10C7.62748 10 7.5526 9.96899 7.49738 9.91379Z"
-                                fill={editor?.getAttributes("textStyle")?.color || "black"}
-                            />
-                        </svg>
                     </div>
                 </div>
             </div>
@@ -228,12 +230,10 @@ const InsertAttributesOptions = ({
                                      editor,
                                      openEmojiPicker,
                                      setOpenEmojiPicker,
-                                     openAttributeList,
-                                     setOpenAttributeList
-                                 }: any) => {
+                                 }) => {
 
     const toggleEmoji = (emoji: any) => {
-        const abcd = `<span style="">&#x${emoji.unified}</span>`;
+        const abcd = `<span style="">${emoji.emoji}</span>`;
         editor?.commands?.insertContent(`${abcd}`);
         editor?.chain().focus();
     };
@@ -243,19 +243,6 @@ const InsertAttributesOptions = ({
         setOpenEmojiPicker((prev: boolean) => !prev);
     };
 
-    const selectAttributes = () => {
-        editor?.chain().focus();
-        setOpenAttributeList((prev: boolean) => !prev);
-    };
-
-    const addAttribute = (attribute: any) => {
-        const abcd = `${attribute?.key}`;
-        editor?.chain().focus();
-
-        editor?.commands?.insertContent(`{{${abcd}}}`);
-        editor?.chain().focus();
-    }
-
 
     return (
         <div style={{position: "relative"}}>
@@ -263,13 +250,12 @@ const InsertAttributesOptions = ({
                 <div className={styles.editOptions}>
                     <div className={styles.optionSection}>
                         <div onClick={(ev) => selectEmojis(ev)}>{EditIcons[EeditOptions.emoticons]}</div>
-                        <div onClick={() => selectAttributes()}>{EditIcons[EeditOptions.user_attributes]}</div>
                     </div>
                 </div>
             </div>
             <EmojiPicker
                 autoFocusSearch={false} open={openEmojiPicker}
-                style={{zIndex: 1, position: "absolute", right: 0, top: "50px"}}
+                style={{zIndex: 1, position: "absolute", right: 0, bottom: "50px"}}
                 onEmojiClick={(emoji) => toggleEmoji(emoji)}/>
 
         </div>

@@ -1,6 +1,6 @@
 
 .editOptions {
-  height: 28px;
+  height: 20px;
   border-radius: 16px;
   margin-top: 8px;
   padding: 6px 12px;
@@ -8,12 +8,20 @@
   background: #F5F5F5;
 
   display: flex;
-
+  align-items: center;
   gap: 6px;
 
   .optionSection {
     display: flex;
     gap: 8px;
+    align-items: center;
+
+    .selected {
+      padding: 4px;
+      background: #f7f7ed;
+      border-radius: 6px;
+      border: 1px solid #797777;
+    }
 
     div {
       display: flex;
@@ -36,25 +44,30 @@
   border-radius: 8px;
   padding: 12px;
   box-sizing: border-box;
-  max-height: 45px;
+  max-height: 120px;
 
   overflow: auto;
 
-  p {
+  p, div {
     margin: 0;
-
+    outline: none;
+    height: 100%;
+    width: 100%;
   }
+
 }
 
 .focusedInputBox {
-  border: 1px solid #E91E63 !important;
+  border: 1px solid #0556c2 !important;
 }
 
 .optionsContainer {
   display: flex;
   justify-content: space-between;
-  position: relative;
-
+  position: absolute;
+  width: 434px;
+  left: 8px;
+  bottom: 8px;
 }
 
 

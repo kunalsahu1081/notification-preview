@@ -7,11 +7,14 @@ function App() {
     const [count, setCount] = useState(0)
 
     return (
-        <>
-            <PushAppTemplatePreview />
+        <div style={{margin: "auto"}}>
+            <PushAppTemplatePreview/>
 
-            <NTextEditor />
-        </>
+
+            <div style={{margin: "auto", width: '450px'}}>
+                <NTextEditor/>
+            </div>
+        </div>
     )
 }
 
